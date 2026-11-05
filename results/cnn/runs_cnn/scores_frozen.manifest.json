@@ -1,0 +1,82 @@
+{
+  "sha256": "4f594513e3ccbbca8b00ba09d6a5cbf6f26f69e0ddb01a85c3a31faddec17830",
+  "meta_sha256": "f614aac34759ec2a486d10b952aece1c5458e1586c1b4c41dd969f0c67e32133",
+  "n_rows": 760,
+  "n_runs": 40,
+  "frozen_at": "2026-11-05 12:14:01",
+  "config": {
+    "out_dir": "/kaggle/working/runs_cnn",
+    "grid": {
+      "arch": [
+        "cnn"
+      ],
+      "train_corr": [
+        0.5,
+        0.7,
+        0.85,
+        0.95
+      ],
+      "size": [
+        5000,
+        20000
+      ],
+      "seed": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "reg": [
+        "default"
+      ],
+      "aug": [
+        "none"
+      ]
+    },
+    "shortcut": "color",
+    "decoy_corrs": {
+      "marker_tl": 0.0,
+      "marker_br": 0.0
+    },
+    "aug_p": 0.5,
+    "ood_envs": {
+      "E2": 0.75,
+      "E3": 0.5,
+      "E4": 0.25,
+      "E5": 0.0,
+      "REV": -0.95
+    },
+    "n_score": 2000,
+    "spurious_threshold": 0.5,
+    "methods": [
+      "sensitivity",
+      "label_corr",
+      "stability",
+      "shap",
+      "mutual_info",
+      "permutation_importance"
+    ],
+    "target": "rev_drop",
+    "cluster_by": "seed",
+    "n_boot": 2000,
+    "alpha": 0.05,
+    "cnn_hparams": {
+      "channels": [
+        16,
+        32
+      ],
+      "hidden": 64,
+      "lr": 0.003,
+      "batch_size": 128,
+      "max_epochs": 15,
+      "patience": 3,
+      "inner_val_frac": 0.1
+    },
+    "cnn_reg_levels": {
+      "low": 0.0,
+      "default": 0.0001,
+      "high": 0.01
+    }
+  }
+}
