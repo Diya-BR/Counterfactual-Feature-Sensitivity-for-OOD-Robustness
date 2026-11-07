@@ -23,7 +23,7 @@ Experiments use **Colored MNIST** (exact counterfactuals, known ground truth) ac
 | Notebook | Content | Status |
 |---|---|---|
 | `Notebook-0.ipynb` | **Shared core** (Stage A): data, interventions, six scores, freeze protocol, OOD evaluation, analysis, smoke test. Main LR grid. | ✅ Final (design-based registry + MI + permutation importance) |
-| `Notebook-1.ipynb` | Logistic regression (Stage B): reg × augmentation sweep, within-stratum analysis | ⏳ In progress |
+| `Notebook-1.ipynb` | Logistic regression (Stage B): 40-run grid on the final core, all six scores frozen, smoke test, realism check for all three features | ✅ Pre-shift scores frozen; OOD evaluation deferred to the merge notebook |
 | `Notebook-2.ipynb` | Random forest | ⏳ Pending |
 | `Notebook-3.ipynb` | MLP | ⏳ Pending |
 | `Notebook-4.ipynb` | **Small CNN** (Stage B): 40-run grid, blind detection, realism check, IG diagnostic | ✅ Run on final core |
@@ -97,7 +97,15 @@ OOD test data cannot be opened until the scores are frozen and the hash verifies
 > These are results from Colored MNIST only, with two architectures. RF, MLP and Waterbirds are pending, so treat everything below as preliminary.
 
 ### Controls
-In **every** run of both models, colour sensitivity beats both decoys and the null, and null sensitivity is exactly **0.000**. CNN realism AUROC is 0.50–0.52 at every training correlation, against a positive control of 1.00.
+In **every** run of both models, colour sensitivity beats both decoys and the null, and null sensitivity is exactly **0.000**.
+
+Realism check (natural vs counterfactual images with the same label and feature value; 0.5 = indistinguishable):
+
+| Check | AUROC |
+|---|---|
+| Colour swap (Notebook 4, CNN classifier) | 0.50–0.52 at every training correlation |
+| Positive control: swap plus a faint artifact | 1.00 |
+| Colour / marker_tl / marker_br (Notebook 1) | 0.48–0.53 for all three features at every training correlation |
 
 ### RQ2: does the frozen score predict the reversed-colour drop? (40 runs each)
 
@@ -146,7 +154,7 @@ Almost every score achieves top-1 = 1.0 and AUROC = 1.0, on the grid runs and on
 - **Blind detection saturates** (all methods perfect).
 - **Mixed-effects model** has few groups and boundary warnings. When pooling architectures, use model as a fixed effect plus the cluster bootstrap.
 - **Synthetic data:** exact counterfactuals do not exist on real images, hence the planned Waterbirds multi-method comparison.
-- Only two architectures so far (LR main grid and CNN); the LR sweep, RF, MLP and Waterbirds are still to come.
+- Only two architectures have OOD results so far (LR main grid in Notebook 0, and the CNN). Notebook 1's frozen LR scores, RF, MLP and Waterbirds are still to go through OOD evaluation and the pooled analysis.
 
 ---
 
@@ -155,7 +163,7 @@ Almost every score achieves top-1 = 1.0 and AUROC = 1.0, on the grid runs and on
 ```
 .
 ├── Notebook-0.ipynb            # Shared core (Stage A) + main LR grid
-├── Notebook-1.ipynb            # LR sweep (in progress)
+├── Notebook-1.ipynb            # LR grid on the final core: frozen pre-shift scores + realism check
 ├── Notebook-4.ipynb            # Small CNN (Stage B)
 ├── cnn_model.py                # CNN wrapper (needed to unpickle CNN models)
 └── results/
