@@ -1,0 +1,2 @@
+run_id,model,seed,size,corr,reg,aug,train_acc,id_val_acc,fit_seconds,model_path,traincorr_color,traincorr_marker_tl,traincorr_marker_br
+lr_c0.5_n20000_s2_rdefault_anone,lr,2,20000,0.5,default,none,0.9286,0.90675,6.02,/kaggle/working/results/lr/runs_lr/models/lr_c0.5_n20000_s2_rdefault_anone.pkl,0.4998638219105208,0.008209357029336723,-0.012045308647654782
