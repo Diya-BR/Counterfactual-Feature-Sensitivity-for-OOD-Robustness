@@ -1,0 +1,65 @@
+{
+  "sha256": "7443e696da907dfb99b56a793c169097cbfecfa230e77d44081f511eec572120",
+  "meta_sha256": "119f1596c84dfb3f9aa3658fe2b29633fecc0d7dad6729e948d493140ed24e95",
+  "n_rows": 1140,
+  "n_runs": 60,
+  "frozen_at": "2026-11-11 15:27:53",
+  "config": {
+    "out_dir": "/kaggle/working/results/mlp/runs_mlp_sweep",
+    "grid": {
+      "arch": [
+        "mlp"
+      ],
+      "train_corr": [
+        0.7,
+        0.95
+      ],
+      "size": [
+        5000
+      ],
+      "seed": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "reg": [
+        "low",
+        "default",
+        "high"
+      ],
+      "aug": [
+        "none",
+        "color_rand"
+      ]
+    },
+    "shortcut": "color",
+    "decoy_corrs": {
+      "marker_tl": 0.0,
+      "marker_br": 0.0
+    },
+    "aug_p": 0.5,
+    "ood_envs": {
+      "E2": 0.75,
+      "E3": 0.5,
+      "E4": 0.25,
+      "E5": 0.0,
+      "REV": -0.95
+    },
+    "n_score": 2000,
+    "spurious_threshold": 0.5,
+    "methods": [
+      "sensitivity",
+      "label_corr",
+      "stability",
+      "shap",
+      "mutual_info",
+      "permutation_importance"
+    ],
+    "target": "rev_drop",
+    "cluster_by": "seed",
+    "n_boot": 2000,
+    "alpha": 0.05
+  }
+}

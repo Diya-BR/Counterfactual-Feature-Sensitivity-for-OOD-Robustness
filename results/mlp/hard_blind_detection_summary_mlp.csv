@@ -1,0 +1,7 @@
+,top1_most_harmful,strong_vs_weak_order,auroc_shortcut_vs_decoy
+label_corr,1.0,1.0,1.0
+mutual_info,1.0,1.0,1.0
+sensitivity,0.967,0.967,1.0
+shap,0.933,0.933,1.0
+permutation_importance,0.933,0.933,1.0
+stability,0.8,0.8,1.0
